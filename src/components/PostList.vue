@@ -1,12 +1,22 @@
 <template>
-  <div class="post" v-for="post in posts">
-    <div><strong>Название поста: </strong>{{ post.title }}</div>
-    <div><strong>Текст поста: </strong>{{ post.body }}</div>
+  <div>
+    <h3>Список постов</h3>
+    <post-item
+      @remove="$emit('remove', post)"
+      v-for="post in posts"
+      v-bind:post="post"
+      :key="post.id"
+    />
   </div>
 </template>
 
 <script>
+import PostItem from "@/components/PostItem";
+
 export default {
+  components: {
+    PostItem,
+  },
   props: {
     posts: {
       type: Array,
